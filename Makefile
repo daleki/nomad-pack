@@ -152,4 +152,4 @@ clean:
 act:
 # because Nomad needs to be able to run the mount command for secrets
 # act needs to run the containers with SYS_ADMIN capabilities
-	@act --artifact-server-path ./act_artifacts --container-cap-add SYS_ADMIN
+	@act --artifact-server-path ./act_artifacts --container-cap-add SYS_ADMIN $(args)
