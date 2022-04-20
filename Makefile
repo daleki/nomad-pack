@@ -87,7 +87,7 @@ BIN_NAME     ?= $(PRODUCT_NAME)
 # Not using 'go env GOOS/GOARCH' here so 'make docker' will work without local Go install.
 ARCH     = $(shell A=$$(uname -m); [ $$A = x86_64 ] && A=amd64; echo $$A)
 OS       = $(shell uname | tr [[:upper:]] [[:lower:]])
-PLATFORM = $(OS)/$(ARCH)
+PLATFORM ?= $(OS)/$(ARCH)
 DIST     = dist/$(PLATFORM)
 BIN      = $(DIST)/$(BIN_NAME)
 
@@ -137,8 +137,7 @@ endef
 
 # Create docker/<target>[/run] targets.
 $(eval $(call DOCKER_TARGET,dev,))
-$(eval $(call DOCKER_TARGET,default,bin))
-$(eval $(call DOCKER_TARGET,debian,bin))
+$(eval $(call DOCKER_TARGET,release-default,bin))
 
 .PHONY: docker
 docker: docker/dev
