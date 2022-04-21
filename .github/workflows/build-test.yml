@@ -133,7 +133,7 @@ jobs:
 
         with:
           smoke_test: |
-            TEST_VERSION="$(docker run "${IMAGE_NAME}" | awk '/Nomad Pack/{print $3}')"
+            TEST_VERSION="$(docker run "${IMAGE_NAME}" version | awk '/Nomad Pack/{print $3}')"
             if [ "${TEST_VERSION#v}" != "${version}" ]; then
               echo "Test FAILED"
               exit 1
